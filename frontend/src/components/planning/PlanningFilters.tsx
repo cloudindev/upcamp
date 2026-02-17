@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Search, Filter } from 'lucide-react';
 import { PlanningFilters, ReservationStatus } from '../../types/planning.types';
 
@@ -15,7 +14,6 @@ const statusOptions: { value: ReservationStatus; label: string; color: string }[
 ];
 
 export default function PlanningFiltersComponent({ filters, onFiltersChange }: PlanningFiltersProps) {
-    const [isExpanded, setIsExpanded] = useState(false);
 
     const handleSearchChange = (search: string) => {
         onFiltersChange({ ...filters, search });
