@@ -1,0 +1,95 @@
+
+export default function HeroSection() {
+    return (
+        <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+            {/* Background Decorations */}
+            <div className="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden">
+                <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-upcamp-cyan/10 rounded-full blur-[100px]" />
+                <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-upcamp-blue/10 rounded-full blur-[100px]" />
+            </div>
+
+            <div className="container mx-auto px-4 md:px-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div className="space-y-8">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-upcamp-cyan/10 text-upcamp-cyan-dark text-xs font-semibold uppercase tracking-wider">
+                            <span className="w-2 h-2 rounded-full bg-upcamp-cyan" />
+                            Next-Gen Campground Management
+                        </div>
+
+                        <h1 className="text-5xl lg:text-7xl font-bold text-text-primary leading-[1.1]">
+                            Elevate Your <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-upcamp-cyan to-upcamp-blue">
+                                Campsite Management
+                            </span>
+                        </h1>
+
+                        <p className="text-lg text-text-secondary max-w-xl leading-relaxed">
+                            The all-in-one platform to streamline bookings, manage occupancy, and delight your guests. Experience the future of hospitality in the great outdoors.
+                        </p>
+
+                        <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                            <a
+                                href="/register"
+                                className="px-8 py-4 bg-upcamp-cyan text-white rounded-button font-bold text-lg shadow-lg shadow-upcamp-cyan/30 hover:shadow-xl hover:-translate-y-1 transition-all text-center"
+                            >
+                                Start Free Trial
+                            </a>
+                            <a
+                                href="#demo"
+                                className="px-8 py-4 bg-white text-text-primary border border-outline rounded-button font-bold text-lg hover:bg-surface-variant transition-all flex items-center justify-center gap-2 group"
+                            >
+                                <svg className="w-5 h-5 text-text-primary group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                                </svg>
+                                Watch Demo
+                            </a>
+                        </div>
+
+                        <div className="flex items-center gap-4 pt-8 border-t border-outline/50">
+                            <div className="flex -space-x-3">
+                                {[1, 2, 3, 4].map((i) => (
+                                    <div key={i} className="w-10 h-10 rounded-full border-2 border-surface bg-surface-variant flex items-center justify-center text-xs font-bold text-text-secondary">
+                                        Wait
+                                    </div>
+                                ))}
+                            </div>
+                            <p className="text-sm font-medium text-text-secondary">
+                                Joined by <span className="text-text-primary font-bold">500+ premium parks</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="relative">
+                        <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl border-4 border-white/50 backdrop-blur-sm">
+                            <img
+                                src="https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                                alt="Dashboard Preview"
+                                className="w-full h-auto object-cover"
+                            />
+
+                            {/* Floating UI Elements Mockup */}
+                            <div className="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-md p-4 rounded-xl shadow-lg border border-white/50">
+                                <div className="flex justify-between items-center mb-3">
+                                    <span className="font-bold text-text-primary">Real-time Occupancy</span>
+                                    <span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full">94% Full</span>
+                                </div>
+                                <div className="flex gap-2">
+                                    {[1, 2, 3, 4, 5, 6, 7].map((i) => (
+                                        <div
+                                            key={i}
+                                            className={`h-12 flex-1 rounded-lg ${i > 5 ? 'bg-surface-variant' : 'bg-upcamp-cyan/30'}`}
+                                        />
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Decorative blobs behind image */}
+                        <div className="absolute -top-10 -right-10 w-40 h-40 bg-upcamp-cyan/20 rounded-full blur-2xl -z-10" />
+                        <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-upcamp-blue/20 rounded-full blur-2xl -z-10" />
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}

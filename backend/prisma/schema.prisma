@@ -1,0 +1,438 @@
+// This is your Prisma schema file
+// Learn more: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ============================================
+// TENANCY & USERS
+// ============================================
+
+model Tenant {
+  id        String   @id @default(uuid())
+  name      String
+  slug      String   @unique
+  email     String
+  phone     String?
+  address   String?
+  city      String?
+  province  String?
+  postalCode String? @map("postal_code")
+  country   String   @default("ES")
+  taxId     String?  @map("tax_id") // CIF/NIF
+  
+  // Subscription
+  plan      String   @default("trial") // trial, basic, pro, enterprise
+  status    String   @default("active") // active, suspended, cancelled
+  trialEndsAt DateTime? @map("trial_ends_at")
+  
+  // Timestamps
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  
+  // Relations
+  users         User[]
+  sites         Site[]
+  zones         Zone[]
+  units         Unit[]
+  unitTypes     UnitType[]
+  reservations  Reservation[]
+  guests        Guest[]
+  folios        Folio[]
+  charges       Charge[]
+  payments      Payment[]
+  invoices      Invoice[]
+  checkIns      CheckIn[]
+  sesSubmissions SESSubmission[]
+  auditLogs     AuditLog[]
+  
+  @@map("tenants")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  tenantId  String   @map("tenant_id")
+  email     String
+  password  String   // bcrypt hash
+  firstName String   @map("first_name")
+  lastName  String   @map("last_name")
+  role      String   @default("staff") // admin, manager, staff, receptionist
+  isActive  Boolean  @default(true) @map("is_active")
+  
+  // Timestamps
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  lastLoginAt DateTime? @map("last_login_at")
+  
+  // Relations
+  tenant    Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  auditLogs AuditLog[]
+  
+  @@unique([tenantId, email])
+  @@index([tenantId])
+  @@map("users")
+}
+
+// ============================================
+// INVENTORY
+// ============================================
+
+model Site {
+  id          String   @id @default(uuid())
+  tenantId    String   @map("tenant_id")
+  name        String
+  description String?
+  isActive    Boolean  @default(true) @map("is_active")
+  
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  
+  tenant      Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  zones       Zone[]
+  
+  @@index([tenantId])
+  @@map("sites")
+}
+
+model Zone {
+  id          String   @id @default(uuid())
+  tenantId    String   @map("tenant_id")
+  siteId      String   @map("site_id")
+  name        String
+  description String?
+  sortOrder   Int      @default(0) @map("sort_order")
+  
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  
+  tenant      Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  site        Site     @relation(fields: [siteId], references: [id], onDelete: Cascade)
+  units       Unit[]
+  
+  @@index([tenantId])
+  @@index([siteId])
+  @@map("zones")
+}
+
+model UnitType {
+  id              String   @id @default(uuid())
+  tenantId        String   @map("tenant_id")
+  name            String   // "Parcela Estándar", "Bungalow 4 pax"
+  category        String   // "plot", "bungalow", "cabin", "mobile_home"
+  maxOccupancy    Int      @map("max_occupancy")
+  basePrice       Decimal  @map("base_price") @db.Decimal(10, 2)
+  description     String?
+  amenities       String[] // ["electricity", "water", "wifi"]
+  
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+  
+  tenant          Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  units           Unit[]
+  
+  @@index([tenantId])
+  @@map("unit_types")
+}
+
+model Unit {
+  id          String   @id @default(uuid())
+  tenantId    String   @map("tenant_id")
+  zoneId      String   @map("zone_id")
+  unitTypeId  String   @map("unit_type_id")
+  name        String   // "P-001", "Bungalow A1"
+  status      String   @default("available") // available, occupied, maintenance, blocked
+  
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  
+  tenant      Tenant       @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  zone        Zone         @relation(fields: [zoneId], references: [id], onDelete: Cascade)
+  unitType    UnitType     @relation(fields: [unitTypeId], references: [id], onDelete: Cascade)
+  reservations Reservation[]
+  
+  @@unique([tenantId, name])
+  @@index([tenantId])
+  @@index([zoneId])
+  @@index([unitTypeId])
+  @@map("units")
+}
+
+// ============================================
+// AVAILABILITY & RESERVATIONS
+// ============================================
+
+model Reservation {
+  id              String    @id @default(uuid())
+  tenantId        String    @map("tenant_id")
+  unitId          String    @map("unit_id")
+  guestId         String    @map("guest_id")
+  folioId         String?   @map("folio_id")
+  
+  // Dates
+  checkInDate     DateTime  @map("check_in_date") @db.Date
+  checkOutDate    DateTime  @map("check_out_date") @db.Date
+  nights          Int
+  
+  // Status
+  status          String    @default("pending") // pending, confirmed, checked_in, checked_out, cancelled
+  
+  // Pricing
+  totalAmount     Decimal   @map("total_amount") @db.Decimal(10, 2)
+  paidAmount      Decimal   @default(0) @map("paid_amount") @db.Decimal(10, 2)
+  
+  // Occupancy
+  adults          Int       @default(1)
+  children        Int       @default(0)
+  
+  // Notes
+  notes           String?
+  cancellationReason String? @map("cancellation_reason")
+  
+  // Timestamps
+  createdAt       DateTime  @default(now()) @map("created_at")
+  updatedAt       DateTime  @updatedAt @map("updated_at")
+  cancelledAt     DateTime? @map("cancelled_at")
+  
+  // Relations
+  tenant          Tenant    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  unit            Unit      @relation(fields: [unitId], references: [id], onDelete: Restrict)
+  guest           Guest     @relation(fields: [guestId], references: [id], onDelete: Restrict)
+  folio           Folio?    @relation(fields: [folioId], references: [id])
+  checkIn         CheckIn?
+  
+  @@index([tenantId])
+  @@index([unitId])
+  @@index([guestId])
+  @@index([checkInDate, checkOutDate])
+  @@index([status])
+  @@map("reservations")
+}
+
+// ============================================
+// GUESTS
+// ============================================
+
+model Guest {
+  id          String   @id @default(uuid())
+  tenantId    String   @map("tenant_id")
+  
+  // Personal Info
+  firstName   String   @map("first_name")
+  lastName    String   @map("last_name")
+  email       String?
+  phone       String?
+  
+  // ID Document
+  documentType String? @map("document_type") // dni, nie, passport
+  documentNumber String? @map("document_number")
+  nationality String?  @default("ES")
+  
+  // Address
+  address     String?
+  city        String?
+  province    String?
+  postalCode  String?  @map("postal_code")
+  country     String?  @default("ES")
+  
+  // Timestamps
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  
+  // Relations
+  tenant      Tenant        @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  reservations Reservation[]
+  checkIns    CheckIn[]
+  
+  @@unique([tenantId, email])
+  @@index([tenantId])
+  @@index([documentNumber])
+  @@map("guests")
+}
+
+// ============================================
+// FINANCIAL
+// ============================================
+
+model Folio {
+  id          String   @id @default(uuid())
+  tenantId    String   @map("tenant_id")
+  folioNumber String   @map("folio_number")
+  
+  status      String   @default("open") // open, closed
+  totalAmount Decimal  @default(0) @map("total_amount") @db.Decimal(10, 2)
+  paidAmount  Decimal  @default(0) @map("paid_amount") @db.Decimal(10, 2)
+  balance     Decimal  @default(0) @db.Decimal(10, 2)
+  
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  closedAt    DateTime? @map("closed_at")
+  
+  tenant      Tenant    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  reservations Reservation[]
+  charges     Charge[]
+  payments    Payment[]
+  invoices    Invoice[]
+  
+  @@unique([tenantId, folioNumber])
+  @@index([tenantId])
+  @@map("folios")
+}
+
+model Charge {
+  id          String   @id @default(uuid())
+  tenantId    String   @map("tenant_id")
+  folioId     String   @map("folio_id")
+  
+  description String
+  amount      Decimal  @db.Decimal(10, 2)
+  quantity    Int      @default(1)
+  unitPrice   Decimal  @map("unit_price") @db.Decimal(10, 2)
+  taxRate     Decimal  @default(0) @map("tax_rate") @db.Decimal(5, 2)
+  
+  chargeDate  DateTime @default(now()) @map("charge_date")
+  createdAt   DateTime @default(now()) @map("created_at")
+  
+  tenant      Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  folio       Folio    @relation(fields: [folioId], references: [id], onDelete: Cascade)
+  
+  @@index([tenantId])
+  @@index([folioId])
+  @@map("charges")
+}
+
+model Payment {
+  id          String   @id @default(uuid())
+  tenantId    String   @map("tenant_id")
+  folioId     String   @map("folio_id")
+  
+  amount      Decimal  @db.Decimal(10, 2)
+  method      String   // cash, card, transfer, bizum
+  reference   String?  // Card transaction ID, transfer reference
+  
+  paymentDate DateTime @default(now()) @map("payment_date")
+  createdAt   DateTime @default(now()) @map("created_at")
+  
+  tenant      Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  folio       Folio    @relation(fields: [folioId], references: [id], onDelete: Cascade)
+  
+  @@index([tenantId])
+  @@index([folioId])
+  @@map("payments")
+}
+
+model Invoice {
+  id            String   @id @default(uuid())
+  tenantId      String   @map("tenant_id")
+  folioId       String   @map("folio_id")
+  
+  invoiceNumber String   @map("invoice_number")
+  series        String   @default("A")
+  type          String   @default("invoice") // invoice, credit_note
+  
+  subtotal      Decimal  @db.Decimal(10, 2)
+  taxAmount     Decimal  @map("tax_amount") @db.Decimal(10, 2)
+  totalAmount   Decimal  @map("total_amount") @db.Decimal(10, 2)
+  
+  pdfUrl        String?  @map("pdf_url")
+  
+  issuedAt      DateTime @default(now()) @map("issued_at")
+  createdAt     DateTime @default(now()) @map("created_at")
+  
+  tenant        Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  folio         Folio    @relation(fields: [folioId], references: [id], onDelete: Cascade)
+  
+  @@unique([tenantId, series, invoiceNumber])
+  @@index([tenantId])
+  @@index([folioId])
+  @@map("invoices")
+}
+
+// ============================================
+// CHECK-IN & COMPLIANCE
+// ============================================
+
+model CheckIn {
+  id              String   @id @default(uuid())
+  tenantId        String   @map("tenant_id")
+  reservationId   String   @unique @map("reservation_id")
+  guestId         String   @map("guest_id")
+  
+  // Companions
+  companions      Json?    // Array of companion details
+  
+  // Vehicles
+  vehicles        Json?    // Array of vehicle details (plate, type)
+  
+  // Digital Signature
+  signatureUrl    String?  @map("signature_url")
+  
+  // Timestamps
+  checkedInAt     DateTime @default(now()) @map("checked_in_at")
+  createdAt       DateTime @default(now()) @map("created_at")
+  
+  // Relations
+  tenant          Tenant      @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  reservation     Reservation @relation(fields: [reservationId], references: [id], onDelete: Cascade)
+  guest           Guest       @relation(fields: [guestId], references: [id], onDelete: Restrict)
+  sesSubmission   SESSubmission?
+  
+  @@index([tenantId])
+  @@index([reservationId])
+  @@map("check_ins")
+}
+
+model SESSubmission {
+  id          String   @id @default(uuid())
+  tenantId    String   @map("tenant_id")
+  checkInId   String   @unique @map("check_in_id")
+  
+  status      String   @default("pending") // pending, submitted, failed
+  payload     Json     // Data sent to SES
+  response    Json?    // Response from SES API
+  errorMessage String? @map("error_message")
+  
+  submittedAt DateTime? @map("submitted_at")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  
+  tenant      Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  checkIn     CheckIn  @relation(fields: [checkInId], references: [id], onDelete: Cascade)
+  
+  @@index([tenantId])
+  @@index([status])
+  @@map("ses_submissions")
+}
+
+// ============================================
+// AUDIT
+// ============================================
+
+model AuditLog {
+  id          String   @id @default(uuid())
+  tenantId    String   @map("tenant_id")
+  userId      String?  @map("user_id")
+  
+  action      String   // create, update, delete
+  entity      String   // reservation, payment, invoice
+  entityId    String   @map("entity_id")
+  changes     Json?    // Before/after snapshot
+  
+  ipAddress   String?  @map("ip_address")
+  userAgent   String?  @map("user_agent")
+  
+  createdAt   DateTime @default(now()) @map("created_at")
+  
+  tenant      Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  user        User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  
+  @@index([tenantId])
+  @@index([entityId])
+  @@index([createdAt])
+  @@map("audit_logs")
+}
