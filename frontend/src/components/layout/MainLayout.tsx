@@ -61,9 +61,9 @@ export default function MainLayout() {
                     <div className="flex items-center justify-between h-16">
                         <div className="flex items-center gap-3">
                             <img
-                                src="/logo.jpeg"
+                                src="/upcamp-logo.png"
                                 alt="UPCAMP"
-                                className="h-8 w-auto object-contain"
+                                className="h-10 w-auto object-contain"
                             />
                         </div>
 

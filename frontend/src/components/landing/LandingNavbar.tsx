@@ -18,9 +18,13 @@ export default function LandingNavbar() {
             }`}>
             <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                    <div className="bg-gradient-to-r from-upcamp-cyan to-upcamp-blue rounded-lg px-3 py-1.5 shadow-md">
-                        <span className="text-white font-bold text-lg tracking-wider">UPCAMP</span>
-                    </div>
+                    <Link to="/" className="flex items-center gap-2">
+                        <img
+                            src="/upcamp-logo.png"
+                            alt="UPCAMP"
+                            className="h-10 w-auto object-contain"
+                        />
+                    </Link>
                 </div>
 
                 <div className="hidden md:flex items-center gap-8">

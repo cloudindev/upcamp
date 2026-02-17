@@ -41,9 +41,9 @@ export default function LoginPage() {
                     <div className="flex justify-center mb-4">
                         <div className="flex justify-center mb-6">
                             <img
-                                src="/logo.jpeg"
+                                src="/upcamp-logo.png"
                                 alt="UPCAMP Hospitality"
-                                className="h-16 w-auto object-contain"
+                                className="h-20 w-auto object-contain"
                             />
                         </div>
                     </div>
