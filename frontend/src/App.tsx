@@ -10,6 +10,8 @@ import GuestsPage from './pages/GuestsPage';
 import GuestDetailPage from './pages/GuestDetailPage';
 import InventoryPage from './pages/InventoryPage';
 
+import SettingsPage from './pages/SettingsPage';
+
 // Public Pages
 import LandingPage from './pages/LandingPage';
 import RegisterPage from './pages/RegisterPage';
@@ -37,7 +39,6 @@ function App() {
                 <Route path="/terms" element={<TermsPage />} />
 
                 {/* Protected routes */}
-                {/* Protected routes */}
                 <Route
                     element={
                         isAuthenticated ? (
@@ -54,6 +55,7 @@ function App() {
                     <Route path="/guests/new" element={<GuestDetailPage />} />
                     <Route path="/guests/:id" element={<GuestDetailPage />} />
                     <Route path="/inventory" element={<InventoryPage />} />
+                    <Route path="/settings" element={<SettingsPage />} />
                 </Route>
 
                 {/* Catch all */}
