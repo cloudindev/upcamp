@@ -7,6 +7,7 @@ import DashboardPage from './pages/DashboardPage';
 import ReservationsPage from './pages/ReservationsPage';
 import PlanningPage from './pages/PlanningPage';
 import GuestsPage from './pages/GuestsPage';
+import GuestDetailPage from './pages/GuestDetailPage';
 import InventoryPage from './pages/InventoryPage';
 
 // Public Pages
@@ -50,6 +51,8 @@ function App() {
                     <Route path="reservations" element={<ReservationsPage />} />
                     <Route path="planning" element={<PlanningPage />} />
                     <Route path="guests" element={<GuestsPage />} />
+                    <Route path="guests/new" element={<GuestDetailPage />} />
+                    <Route path="guests/:id" element={<GuestDetailPage />} />
                     <Route path="inventory" element={<InventoryPage />} />
                 </Route>
 

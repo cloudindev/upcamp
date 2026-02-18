@@ -53,6 +53,13 @@ model Tenant {
   sesSubmissions SESSubmission[]
   auditLogs     AuditLog[]
   
+  // Guest Relations
+  guestBillings GuestBilling[]
+  companions    Companion[]
+  vehicles      Vehicle[]
+  guestDocuments GuestDocument[]
+  loanObjects   LoanObject[]
+  
   @@map("tenants")
 }
 
@@ -228,6 +235,8 @@ model Guest {
   lastName    String   @map("last_name")
   email       String?
   phone       String?
+  language    String   @default("es") // es, en, fr, de, nl
+  notes       String?
   
   // ID Document
   documentType String? @map("document_type") // dni, nie, passport
@@ -249,11 +258,136 @@ model Guest {
   tenant      Tenant        @relation(fields: [tenantId], references: [id], onDelete: Cascade)
   reservations Reservation[]
   checkIns    CheckIn[]
+  billing     GuestBilling?
+  companions  Companion[]
+  vehicles    Vehicle[]
+  documents   GuestDocument[]
+  loans       LoanObject[]
   
   @@unique([tenantId, email])
   @@index([tenantId])
   @@index([documentNumber])
   @@map("guests")
+}
+
+model GuestBilling {
+  id          String   @id @default(uuid())
+  tenantId    String   @map("tenant_id")
+  guestId     String   @unique @map("guest_id")
+  
+  billingName String   @map("billing_name") // Razón social / Nombre completo
+  taxId       String   @map("tax_id")       // NIF/CIF
+  address     String?
+  postalCode  String?  @map("postal_code")
+  city        String?
+  province    String?
+  country     String?  @default("ES")
+  email       String?
+  phone       String?
+  
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  
+  tenant      Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  guest       Guest    @relation(fields: [guestId], references: [id], onDelete: Cascade)
+  
+  @@index([tenantId])
+  @@map("guest_billing")
+}
+
+model Companion {
+  id          String   @id @default(uuid())
+  tenantId    String   @map("tenant_id")
+  guestId     String   @map("guest_id")
+  
+  firstName   String   @map("first_name")
+  lastName    String   @map("last_name")
+  documentType String? @map("document_type")
+  documentNumber String? @map("document_number")
+  nationality String?  @default("ES")
+  birthDate   DateTime? @map("birth_date") @db.Date
+  
+  documentFront String? @map("document_front")
+  documentBack  String? @map("document_back")
+  
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  
+  tenant      Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  guest       Guest    @relation(fields: [guestId], references: [id], onDelete: Cascade)
+  
+  @@index([tenantId])
+  @@index([guestId])
+  @@map("companions")
+}
+
+model Vehicle {
+  id          String   @id @default(uuid())
+  tenantId    String   @map("tenant_id")
+  guestId     String   @map("guest_id")
+  
+  type        String   @default("vehicle") // vehicle, pet
+  plate       String?  // For vehicles
+  brand       String?
+  model       String?
+  color       String?
+  
+  // For pets
+  name        String?
+  breed       String?
+  chipNumber  String? @map("chip_number")
+  
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  
+  tenant      Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  guest       Guest    @relation(fields: [guestId], references: [id], onDelete: Cascade)
+  
+  @@index([tenantId])
+  @@index([guestId])
+  @@map("vehicles")
+}
+
+model GuestDocument {
+  id          String   @id @default(uuid())
+  tenantId    String   @map("tenant_id")
+  guestId     String   @map("guest_id")
+  
+  type        String   // dni, passport, contract, other
+  url         String
+  description String?
+  
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  
+  tenant      Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  guest       Guest    @relation(fields: [guestId], references: [id], onDelete: Cascade)
+  
+  @@index([tenantId])
+  @@index([guestId])
+  @@map("guest_documents")
+}
+
+model LoanObject {
+  id          String   @id @default(uuid())
+  tenantId    String   @map("tenant_id")
+  guestId     String   @map("guest_id")
+  
+  item        String   // "Adaptador europeo", "Raquetas"
+  description String?
+  loanDate    DateTime @default(now()) @map("loan_date")
+  returnDate  DateTime? @map("return_date")
+  status      String   @default("active") // active, returned, lost
+  
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  
+  tenant      Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  guest       Guest    @relation(fields: [guestId], references: [id], onDelete: Cascade)
+  
+  @@index([tenantId])
+  @@index([guestId])
+  @@map("loan_objects")
 }
 
 // ============================================
