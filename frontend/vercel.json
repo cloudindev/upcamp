@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+        {
+            "source": "/api/:match*",
+            "destination": "https://upcamp-backend.vercel.app/api/:match*"
+        }
+    ]
+}
