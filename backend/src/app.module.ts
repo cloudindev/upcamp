@@ -17,6 +17,8 @@ import { FinancialModule } from './modules/financial/financial.module';
 import { CheckInModule } from './modules/checkin/checkin.module';
 import { PlanningModule } from './modules/planning/planning.module';
 
+import { HealthController } from './health.controller';
+
 @Module({
     imports: [
         // Configuration
@@ -48,5 +50,6 @@ import { PlanningModule } from './modules/planning/planning.module';
         CheckInModule,
         PlanningModule,
     ],
+    controllers: [HealthController],
 })
 export class AppModule { }

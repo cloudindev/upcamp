@@ -11,19 +11,24 @@ export class AuthService {
     ) { }
 
     async validateUser(email: string, password: string): Promise<any> {
+        console.log(`[AuthService] Validating user: ${email}`);
         const user = await this.prisma.user.findFirst({
             where: { email, isActive: true },
             include: { tenant: true },
         });
 
         if (!user) {
+            console.log(`[AuthService] User not found or inactive: ${email}`);
             throw new UnauthorizedException('Invalid credentials');
         }
 
+        console.log(`[AuthService] User found, verifying password for: ${email}`);
         const isPasswordValid = await bcrypt.compare(password, user.password);
         if (!isPasswordValid) {
+            console.log(`[AuthService] Invalid password for: ${email}`);
             throw new UnauthorizedException('Invalid credentials');
         }
+        console.log(`[AuthService] Password verified for: ${email}`);
 
         // Update last login
         await this.prisma.user.update({
