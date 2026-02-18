@@ -1,11 +1,11 @@
 
 export default function HeroSection() {
     return (
-        <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <section className="relative pt-24 pb-16 lg:pt-48 lg:pb-32 overflow-hidden">
             {/* Background Decorations */}
             <div className="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden">
-                <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-upcamp-cyan/10 rounded-full blur-[100px]" />
-                <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-upcamp-blue/10 rounded-full blur-[100px]" />
+                <div className="absolute top-[-5%] right-[-10%] w-[70vw] h-[70vw] max-w-[500px] max-h-[500px] bg-upcamp-cyan/10 rounded-full blur-[60px] lg:blur-[100px]" />
+                <div className="absolute bottom-[-5%] left-[-10%] w-[70vw] h-[70vw] max-w-[500px] max-h-[500px] bg-upcamp-blue/10 rounded-full blur-[60px] lg:blur-[100px]" />
             </div>
 
             <div className="container mx-auto px-4 md:px-6">
