@@ -39,7 +39,7 @@ export default {
                 'text-muted': '#9AA5B1',
             },
             fontFamily: {
-                sans: ['Inter', 'system-ui', 'sans-serif'],
+                sans: ['Poppins', 'system-ui', 'sans-serif'],
             },
             borderRadius: {
                 'card': '12px',
