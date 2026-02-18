@@ -85,7 +85,7 @@ export default function FeaturesSection() {
             <div className="container mx-auto px-4 md:px-6">
                 <div className="text-center mb-16">
                     <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
-                        Todo lo que Necesitas para <span className="text-upcamp-cyan">Gestionar</span>
+                        Todo lo que Necesitas para <span className="text-upcamp-cyan">Gestionar tu camping</span>
                     </h2>
                     <p className="text-text-secondary text-lg max-w-2xl mx-auto">
                         Una suite completa de herramientas diseñadas para simplificar cada aspecto de tu camping.
