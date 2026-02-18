@@ -28,11 +28,11 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-upcamp-cyan via-upcamp-blue to-upcamp-blue-dark flex items-center justify-center p-4 relative overflow-hidden">
+        <div className="min-h-screen bg-gradient-to-br from-upcamp-cyan/5 via-upcamp-blue/5 to-upcamp-blue/10 flex items-center justify-center p-4 relative overflow-hidden">
             {/* Decorative background elements */}
             <div className="absolute inset-0 overflow-hidden">
-                <div className="absolute -top-40 -right-40 w-80 h-80 bg-white/10 rounded-full blur-3xl"></div>
-                <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-upcamp-cyan/20 rounded-full blur-3xl"></div>
+                <div className="absolute -top-40 -right-40 w-80 h-80 bg-upcamp-blue/5 rounded-full blur-3xl"></div>
+                <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-upcamp-cyan/5 rounded-full blur-3xl"></div>
             </div>
 
             <div className="card max-w-md w-full relative z-10 shadow-2xl">
@@ -43,7 +43,7 @@ export default function LoginPage() {
                             <img
                                 src="/upcamp-logo.png"
                                 alt="UPCAMP Hospitality"
-                                className="h-20 w-auto object-contain"
+                                className="h-12 w-auto object-contain"
                             />
                         </div>
                     </div>
