@@ -142,7 +142,7 @@ export default function LoginPage() {
 
             {/* Footer */}
             <div className="absolute bottom-4 left-0 right-0 text-center">
-                <p className="text-white/80 text-sm">
+                <p className="text-text-secondary text-sm">
                     © 2026 UPCAMP Hospitality. Todos los derechos reservados.
                 </p>
             </div>
