@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useAuthStore } from '../stores/authStore';
 import { authService } from '../services/authService';
 
@@ -39,19 +39,19 @@ export default function LoginPage() {
                 {/* Logo */}
                 <div className="text-center mb-8">
                     <div className="flex justify-center mb-4">
-                        <div className="flex justify-center mb-6">
+                        <Link to="/" className="flex justify-center mb-6 hover:opacity-80 transition-opacity">
                             <img
                                 src="/upcamp-logo.png"
                                 alt="UPCAMP Hospitality"
                                 className="h-12 w-auto object-contain"
                             />
-                        </div>
+                        </Link>
                     </div>
                     <h1 className="text-2xl font-bold text-text-primary mb-1">
-                        Bienvenido
+                        Accede a tu espacio
                     </h1>
                     <p className="text-text-secondary text-sm">
-                        Sistema de Gestión para Campings
+                        Introduce tus datos de acceso
                     </p>
                 </div>
 
