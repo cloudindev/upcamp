@@ -79,7 +79,7 @@ export default function FeaturesSection() {
             bg: "bg-indigo-100"
         },
         {
-            title: "Control de parcelas fijas",
+            title: "Control de parcelas larga estancia",
             description: "Gestiona contratos de larga estancia, lecturas de contadores y facturación recurrente para residentes.",
             icon: (
                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

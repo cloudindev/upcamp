@@ -27,7 +27,7 @@ export default function PricingSection() {
                         </div>
 
                         <ul className="space-y-3 mb-8 flex-1">
-                            {['Reservas online', 'Motor de reservas', 'Check-in digital', 'Facturación básica', 'Soporte estándar', 'Reportes avanzados', 'Control de parcelas fijas'].map((feature, i) => (
+                            {['Reservas online', 'Motor de reservas', 'Check-in digital', 'Facturación básica', 'Soporte estándar', 'Reportes avanzados', 'Control de parcelas larga estancia'].map((feature, i) => (
                                 <li key={i} className="flex items-start gap-3">
                                     <svg className="w-5 h-5 text-upcamp-cyan flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -64,7 +64,7 @@ export default function PricingSection() {
                         </div>
 
                         <ul className="space-y-3 mb-8 flex-1">
-                            {['Reservas online', 'Motor de reservas', 'Check-in digital', 'Facturación básica', 'Soporte estándar', 'Reportes avanzados', 'Control de parcelas fijas'].map((feature, i) => (
+                            {['Reservas online', 'Motor de reservas', 'Check-in digital', 'Facturación básica', 'Soporte estándar', 'Reportes avanzados', 'Control de parcelas larga estancia'].map((feature, i) => (
                                 <li key={i} className="flex items-start gap-3">
                                     <svg className="w-5 h-5 text-upcamp-cyan flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -96,7 +96,7 @@ export default function PricingSection() {
                         </div>
 
                         <ul className="space-y-3 mb-8 flex-1">
-                            {['Reservas online', 'Motor de reservas', 'Check-in digital', 'Facturación básica', 'Soporte estándar', 'Reportes avanzados', 'Control de parcelas fijas'].map((feature, i) => (
+                            {['Reservas online', 'Motor de reservas', 'Check-in digital', 'Facturación básica', 'Soporte estándar', 'Reportes avanzados', 'Control de parcelas larga estancia'].map((feature, i) => (
                                 <li key={i} className="flex items-start gap-3">
                                     <svg className="w-5 h-5 text-upcamp-cyan flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
