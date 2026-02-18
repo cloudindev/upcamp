@@ -30,21 +30,20 @@ export default function LandingNavbar() {
 
                 {/* Desktop Menu */}
                 <div className="hidden md:flex items-center gap-8">
-                    <a href="#features" className="text-sm font-medium text-text-secondary hover:text-upcamp-blue transition-colors">Características</a>
-                    <a href="#pricing" className="text-sm font-medium text-text-secondary hover:text-upcamp-blue transition-colors">Precios</a>
-                    <a href="#about" className="text-sm font-medium text-text-secondary hover:text-upcamp-blue transition-colors">Nosotros</a>
+                    <a href="#features" className="text-base font-bold uppercase tracking-wide text-text-secondary hover:text-upcamp-blue transition-colors">Características</a>
+                    <a href="#pricing" className="text-base font-bold uppercase tracking-wide text-text-secondary hover:text-upcamp-blue transition-colors">Precios</a>
                 </div>
 
                 {/* Usage Buttons (Desktop) */}
                 <div className="hidden md:flex items-center gap-4">
-                    <Link to="/login" className="text-sm font-semibold text-text-primary hover:text-upcamp-blue transition-colors">
+                    <Link to="/login" className="px-5 py-2.5 border border-text-primary/20 rounded-button text-sm font-bold uppercase tracking-wide text-text-primary hover:border-upcamp-blue hover:text-upcamp-blue transition-all">
                         Iniciar Sesión
                     </Link>
                     <Link
                         to="/register"
-                        className="bg-upcamp-blue text-white px-5 py-2.5 rounded-button text-sm font-semibold hover:bg-upcamp-blue-dark transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                        className="bg-upcamp-blue text-white px-5 py-2.5 rounded-button text-sm font-bold uppercase tracking-wide hover:bg-upcamp-blue-dark transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                     >
-                        Registrar Camping
+                        Empezar gratis
                     </Link>
                 </div>
 
@@ -70,39 +69,32 @@ export default function LandingNavbar() {
                 <div className="md:hidden absolute top-full left-0 w-full bg-surface border-b border-outline shadow-lg p-4 flex flex-col gap-4 animate-fade-in-down">
                     <a
                         href="#features"
-                        className="text-base font-medium text-text-secondary hover:text-upcamp-blue py-2 border-b border-outline/50"
+                        className="text-base font-bold uppercase tracking-wide text-text-secondary hover:text-upcamp-blue py-2 border-b border-outline/50"
                         onClick={() => setMobileMenuOpen(false)}
                     >
                         Características
                     </a>
                     <a
                         href="#pricing"
-                        className="text-base font-medium text-text-secondary hover:text-upcamp-blue py-2 border-b border-outline/50"
+                        className="text-base font-bold uppercase tracking-wide text-text-secondary hover:text-upcamp-blue py-2 border-b border-outline/50"
                         onClick={() => setMobileMenuOpen(false)}
                     >
                         Precios
                     </a>
-                    <a
-                        href="#about"
-                        className="text-base font-medium text-text-secondary hover:text-upcamp-blue py-2 border-b border-outline/50"
-                        onClick={() => setMobileMenuOpen(false)}
-                    >
-                        Nosotros
-                    </a>
                     <div className="flex flex-col gap-3 mt-2">
                         <Link
                             to="/login"
-                            className="text-center w-full py-2.5 font-semibold text-text-primary border border-outline rounded-button"
+                            className="text-center w-full py-2.5 font-bold uppercase tracking-wide text-text-primary border border-outline rounded-button"
                             onClick={() => setMobileMenuOpen(false)}
                         >
                             Iniciar Sesión
                         </Link>
                         <Link
                             to="/register"
-                            className="text-center w-full py-2.5 bg-upcamp-blue text-white font-semibold rounded-button shadow-md"
+                            className="text-center w-full py-2.5 bg-upcamp-blue text-white font-bold uppercase tracking-wide rounded-button shadow-md"
                             onClick={() => setMobileMenuOpen(false)}
                         >
-                            Registrar Camping
+                            Empezar gratis
                         </Link>
                     </div>
                 </div>
