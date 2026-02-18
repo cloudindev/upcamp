@@ -41,6 +41,11 @@ export default {
             fontFamily: {
                 sans: ['Poppins', 'system-ui', 'sans-serif'],
             },
+            fontSize: {
+                xs: ['0.8125rem', { lineHeight: '1rem' }], // 13px
+                sm: ['0.9375rem', { lineHeight: '1.25rem' }], // 15px
+                base: ['1.0625rem', { lineHeight: '1.5rem' }], // 17px
+            },
             borderRadius: {
                 'card': '12px',
                 'button': '8px',
