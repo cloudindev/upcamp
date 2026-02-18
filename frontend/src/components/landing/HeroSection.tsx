@@ -29,7 +29,7 @@ export default function HeroSection() {
                         <div className="flex flex-col gap-3 pt-4 items-center sm:items-start w-full sm:w-fit">
                             <a
                                 href="/register"
-                                className="w-full sm:w-auto px-8 py-4 bg-upcamp-cyan text-white rounded-button font-bold text-lg shadow-lg shadow-upcamp-cyan/30 hover:shadow-xl hover:-translate-y-1 transition-all text-center"
+                                className="w-full sm:w-auto px-14 py-4 bg-upcamp-cyan text-white rounded-button font-bold text-lg shadow-lg shadow-upcamp-cyan/30 hover:shadow-xl hover:-translate-y-1 transition-all text-center"
                             >
                                 Pruébalo ahora
                             </a>
