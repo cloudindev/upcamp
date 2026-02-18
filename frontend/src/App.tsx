@@ -12,6 +12,10 @@ import InventoryPage from './pages/InventoryPage';
 // Public Pages
 import LandingPage from './pages/LandingPage';
 import RegisterPage from './pages/RegisterPage';
+import LegalNoticePage from './pages/LegalNoticePage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import CookiesPage from './pages/CookiesPage';
+import TermsPage from './pages/TermsPage';
 
 // Layout
 import MainLayout from './components/layout/MainLayout';
@@ -26,6 +30,10 @@ function App() {
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<RegisterPage />} />
+                <Route path="/legal" element={<LegalNoticePage />} />
+                <Route path="/privacy" element={<PrivacyPolicyPage />} />
+                <Route path="/cookies" element={<CookiesPage />} />
+                <Route path="/terms" element={<TermsPage />} />
 
                 {/* Protected routes */}
                 <Route

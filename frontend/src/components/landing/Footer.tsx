@@ -1,4 +1,6 @@
 
+import { Link } from 'react-router-dom';
+
 export default function Footer() {
     return (
         <footer className="bg-surface-variant border-t border-outline py-12">
@@ -17,18 +19,18 @@ export default function Footer() {
                     </div>
 
                     <div className="flex gap-6 text-xs">
-                        <a href="#" className="text-text-muted hover:text-upcamp-blue transition-colors">
+                        <Link to="/legal" className="text-text-muted hover:text-upcamp-blue transition-colors">
                             Aviso Legal
-                        </a>
-                        <a href="#" className="text-text-muted hover:text-upcamp-blue transition-colors">
+                        </Link>
+                        <Link to="/privacy" className="text-text-muted hover:text-upcamp-blue transition-colors">
                             Política de Privacidad
-                        </a>
-                        <a href="#" className="text-text-muted hover:text-upcamp-blue transition-colors">
+                        </Link>
+                        <Link to="/cookies" className="text-text-muted hover:text-upcamp-blue transition-colors">
                             Cookies
-                        </a>
-                        <a href="#" className="text-text-muted hover:text-upcamp-blue transition-colors">
+                        </Link>
+                        <Link to="/terms" className="text-text-muted hover:text-upcamp-blue transition-colors">
                             CGU
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>
