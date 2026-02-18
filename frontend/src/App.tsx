@@ -37,8 +37,8 @@ function App() {
                 <Route path="/terms" element={<TermsPage />} />
 
                 {/* Protected routes */}
+                {/* Protected routes */}
                 <Route
-                    path="/dashboard"
                     element={
                         isAuthenticated ? (
                             <MainLayout />
@@ -47,13 +47,13 @@ function App() {
                         )
                     }
                 >
-                    <Route index element={<DashboardPage />} />
-                    <Route path="reservations" element={<ReservationsPage />} />
-                    <Route path="planning" element={<PlanningPage />} />
-                    <Route path="guests" element={<GuestsPage />} />
-                    <Route path="guests/new" element={<GuestDetailPage />} />
-                    <Route path="guests/:id" element={<GuestDetailPage />} />
-                    <Route path="inventory" element={<InventoryPage />} />
+                    <Route path="/dashboard" element={<DashboardPage />} />
+                    <Route path="/reservations" element={<ReservationsPage />} />
+                    <Route path="/planning" element={<PlanningPage />} />
+                    <Route path="/guests" element={<GuestsPage />} />
+                    <Route path="/guests/new" element={<GuestDetailPage />} />
+                    <Route path="/guests/:id" element={<GuestDetailPage />} />
+                    <Route path="/inventory" element={<InventoryPage />} />
                 </Route>
 
                 {/* Catch all */}
