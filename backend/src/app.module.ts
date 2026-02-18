@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, OnModuleInit } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { ThrottlerModule } from '@nestjs/throttler';
 
@@ -6,6 +6,7 @@ import { ThrottlerModule } from '@nestjs/throttler';
 import { DatabaseModule } from './core/database/database.module';
 import { AuthModule } from './core/auth/auth.module';
 import { TenancyModule } from './core/tenancy/tenancy.module';
+import { SeedService } from './core/database/seed.service';
 
 // Domain modules
 import { TenantsModule } from './modules/tenants/tenants.module';
@@ -52,4 +53,10 @@ import { HealthController } from './health.controller';
     ],
     controllers: [HealthController],
 })
-export class AppModule { }
+export class AppModule implements OnModuleInit {
+    constructor(private readonly seedService: SeedService) { }
+
+    async onModuleInit() {
+        await this.seedService.seed();
+    }
+}
