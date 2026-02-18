@@ -42,13 +42,13 @@ export default function DashboardPage() {
     return (
         <div className="space-y-6">
             {/* Header with Actions */}
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
                 <div>
                     <h1 className="text-3xl font-bold text-text-primary">Panel de Control</h1>
                     <p className="text-text-secondary">Planifica, prioriza y gestiona las operaciones de tu camping con facilidad.</p>
                 </div>
-                <div className="flex gap-3">
-                    <button className="px-4 py-2.5 border-2 border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors flex items-center gap-2">
+                <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                    <button className="w-full sm:w-auto justify-center px-4 py-2.5 border-2 border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors flex items-center gap-2">
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                         </svg>
@@ -56,7 +56,7 @@ export default function DashboardPage() {
                     </button>
                     <button
                         onClick={() => setIsAddBookingOpen(true)}
-                        className="btn btn-primary px-6 py-2.5 flex items-center gap-2"
+                        className="w-full sm:w-auto justify-center btn btn-primary px-6 py-2.5 flex items-center gap-2"
                     >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
