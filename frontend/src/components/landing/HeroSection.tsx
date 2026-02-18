@@ -17,14 +17,13 @@ export default function HeroSection() {
                         </div>
 
                         <h1 className="text-5xl lg:text-7xl font-bold text-text-primary leading-[1.1]">
-                            Eleva la Gestión de tu <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-upcamp-cyan to-upcamp-blue">
-                                Camping
+                                Software gestión campings
                             </span>
                         </h1>
 
                         <p className="text-lg text-text-secondary max-w-xl leading-relaxed">
-                            La plataforma todo en uno para optimizar reservas, gestionar la ocupación y deleitar a tus huéspedes. Experimenta el futuro de la hospitalidad al aire libre.
+                            El PMS más sencillo para optimizar tus reservas, gestionar la ocupación y atender a tus huéspedes. Pruébalo ahora, la aplicación más sencilla para gestores de campings.
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-4 pt-4">
@@ -32,16 +31,7 @@ export default function HeroSection() {
                                 href="/register"
                                 className="px-8 py-4 bg-upcamp-cyan text-white rounded-button font-bold text-lg shadow-lg shadow-upcamp-cyan/30 hover:shadow-xl hover:-translate-y-1 transition-all text-center"
                             >
-                                Prueba Gratuita
-                            </a>
-                            <a
-                                href="#demo"
-                                className="px-8 py-4 bg-white text-text-primary border border-outline rounded-button font-bold text-lg hover:bg-surface-variant transition-all flex items-center justify-center gap-2 group"
-                            >
-                                <svg className="w-5 h-5 text-text-primary group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
-                                </svg>
-                                Ver Demo
+                                Pruébalo ahora
                             </a>
                         </div>
 
