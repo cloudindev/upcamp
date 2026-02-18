@@ -6,10 +6,16 @@ import { ConfigService } from '@nestjs/config';
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
     constructor(private configService: ConfigService) {
+        const secret = configService.get<string>('JWT_SECRET') || process.env.JWT_SECRET || 'super-secret-fallback-key-FIX-ME';
+
+        if (!configService.get<string>('JWT_SECRET') && !process.env.JWT_SECRET) {
+            console.warn('[JwtStrategy] WARNING: JWT_SECRET not found in env. Using fallback key.');
+        }
+
         super({
             jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
             ignoreExpiration: false,
-            secretOrKey: configService.get('JWT_SECRET'),
+            secretOrKey: secret,
         });
     }
 

@@ -12,12 +12,18 @@ import { LocalStrategy } from './strategies/local.strategy';
         PassportModule,
         JwtModule.registerAsync({
             inject: [ConfigService],
-            useFactory: (config: ConfigService) => ({
-                secret: config.get('JWT_SECRET'),
-                signOptions: {
-                    expiresIn: config.get('JWT_EXPIRES_IN', '3600s'),
-                },
-            }),
+            useFactory: (config: ConfigService) => {
+                const secret = config.get('JWT_SECRET') || process.env.JWT_SECRET || 'super-secret-fallback-key-FIX-ME';
+                if (!config.get('JWT_SECRET') && !process.env.JWT_SECRET) {
+                    console.warn('[AuthModule] WARNING: JWT_SECRET not found. Using fallback.');
+                }
+                return {
+                    secret: secret,
+                    signOptions: {
+                        expiresIn: config.get('JWT_EXPIRES_IN', '1d'),
+                    },
+                };
+            },
         }),
     ],
     controllers: [AuthController],
