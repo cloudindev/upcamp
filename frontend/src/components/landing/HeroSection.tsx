@@ -13,18 +13,18 @@ export default function HeroSection() {
                     <div className="space-y-8">
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-upcamp-cyan/10 text-upcamp-cyan-dark text-xs font-semibold uppercase tracking-wider">
                             <span className="w-2 h-2 rounded-full bg-upcamp-cyan" />
-                            Next-Gen Campground Management
+                            Gestión de Campings de Última Generación
                         </div>
 
                         <h1 className="text-5xl lg:text-7xl font-bold text-text-primary leading-[1.1]">
-                            Elevate Your <br />
+                            Eleva la Gestión de tu <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-upcamp-cyan to-upcamp-blue">
-                                Campsite Management
+                                Camping
                             </span>
                         </h1>
 
                         <p className="text-lg text-text-secondary max-w-xl leading-relaxed">
-                            The all-in-one platform to streamline bookings, manage occupancy, and delight your guests. Experience the future of hospitality in the great outdoors.
+                            La plataforma todo en uno para optimizar reservas, gestionar la ocupación y deleitar a tus huéspedes. Experimenta el futuro de la hospitalidad al aire libre.
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-4 pt-4">
@@ -32,7 +32,7 @@ export default function HeroSection() {
                                 href="/register"
                                 className="px-8 py-4 bg-upcamp-cyan text-white rounded-button font-bold text-lg shadow-lg shadow-upcamp-cyan/30 hover:shadow-xl hover:-translate-y-1 transition-all text-center"
                             >
-                                Start Free Trial
+                                Prueba Gratuita
                             </a>
                             <a
                                 href="#demo"
@@ -41,7 +41,7 @@ export default function HeroSection() {
                                 <svg className="w-5 h-5 text-text-primary group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 20 20">
                                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
                                 </svg>
-                                Watch Demo
+                                Ver Demo
                             </a>
                         </div>
 
@@ -54,7 +54,7 @@ export default function HeroSection() {
                                 ))}
                             </div>
                             <p className="text-sm font-medium text-text-secondary">
-                                Joined by <span className="text-text-primary font-bold">500+ premium parks</span>
+                                Con la confianza de <span className="text-text-primary font-bold">500+ campings premium</span>
                             </p>
                         </div>
                     </div>
@@ -63,15 +63,15 @@ export default function HeroSection() {
                         <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl border-4 border-white/50 backdrop-blur-sm">
                             <img
                                 src="https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-                                alt="Dashboard Preview"
+                                alt="Vista Previa Panel"
                                 className="w-full h-auto object-cover"
                             />
 
                             {/* Floating UI Elements Mockup */}
                             <div className="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-md p-4 rounded-xl shadow-lg border border-white/50">
                                 <div className="flex justify-between items-center mb-3">
-                                    <span className="font-bold text-text-primary">Real-time Occupancy</span>
-                                    <span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full">94% Full</span>
+                                    <span className="font-bold text-text-primary">Ocupación en Tiempo Real</span>
+                                    <span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full">94% Lleno</span>
                                 </div>
                                 <div className="flex gap-2">
                                     {[1, 2, 3, 4, 5, 6, 7].map((i) => (

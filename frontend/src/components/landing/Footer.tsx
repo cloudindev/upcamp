@@ -17,10 +17,10 @@ export default function Footer() {
 
                     <div className="flex gap-6">
                         <a href="#" className="text-text-muted hover:text-upcamp-blue transition-colors">
-                            Privacy Policy
+                            Política de Privacidad
                         </a>
                         <a href="#" className="text-text-muted hover:text-upcamp-blue transition-colors">
-                            Terms of Service
+                            Términos de Servicio
                         </a>
                     </div>
                 </div>
