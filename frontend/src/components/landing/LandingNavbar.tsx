@@ -30,8 +30,8 @@ export default function LandingNavbar() {
 
                 {/* Desktop Menu */}
                 <div className="hidden md:flex items-center gap-8">
-                    <a href="#features" className="text-base font-bold uppercase tracking-wide text-text-secondary hover:text-upcamp-blue transition-colors">Características</a>
-                    <a href="#pricing" className="text-base font-bold uppercase tracking-wide text-text-secondary hover:text-upcamp-blue transition-colors">Precios</a>
+                    <a href="#features" className="text-base font-semibold uppercase tracking-[0.005em] text-[rgb(21,57,106)] hover:text-upcamp-blue transition-colors">Características</a>
+                    <a href="#pricing" className="text-base font-semibold uppercase tracking-[0.005em] text-[rgb(21,57,106)] hover:text-upcamp-blue transition-colors">Precios</a>
                 </div>
 
                 {/* Usage Buttons (Desktop) */}
@@ -69,14 +69,14 @@ export default function LandingNavbar() {
                 <div className="md:hidden absolute top-full left-0 w-full bg-surface border-b border-outline shadow-lg p-4 flex flex-col gap-4 animate-fade-in-down">
                     <a
                         href="#features"
-                        className="text-base font-bold uppercase tracking-wide text-text-secondary hover:text-upcamp-blue py-2 border-b border-outline/50"
+                        className="text-base font-semibold uppercase tracking-[0.005em] text-[rgb(21,57,106)] hover:text-upcamp-blue py-2 border-b border-outline/50"
                         onClick={() => setMobileMenuOpen(false)}
                     >
                         Características
                     </a>
                     <a
                         href="#pricing"
-                        className="text-base font-bold uppercase tracking-wide text-text-secondary hover:text-upcamp-blue py-2 border-b border-outline/50"
+                        className="text-base font-semibold uppercase tracking-[0.005em] text-[rgb(21,57,106)] hover:text-upcamp-blue py-2 border-b border-outline/50"
                         onClick={() => setMobileMenuOpen(false)}
                     >
                         Precios
