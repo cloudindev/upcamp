@@ -5,9 +5,11 @@ export default function Footer() {
             <div className="container mx-auto px-4 md:px-6">
                 <div className="flex flex-col md:flex-row justify-between items-center gap-6">
                     <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded bg-gradient-to-br from-upcamp-cyan to-upcamp-blue flex items-center justify-center text-white font-bold text-xs">
-                            UP
-                        </div>
+                        <img
+                            src="/upcamp-logo.png"
+                            alt="UPCAMP Hospitality"
+                            className="h-8 w-auto object-contain"
+                        />
                         <span className="font-bold text-text-primary">UPCAMP Hospitality</span>
                     </div>
 
@@ -17,10 +19,13 @@ export default function Footer() {
 
                     <div className="flex gap-6">
                         <a href="#" className="text-text-muted hover:text-upcamp-blue transition-colors">
+                            Aviso Legal
+                        </a>
+                        <a href="#" className="text-text-muted hover:text-upcamp-blue transition-colors">
                             Política de Privacidad
                         </a>
                         <a href="#" className="text-text-muted hover:text-upcamp-blue transition-colors">
-                            Términos de Servicio
+                            Cookies
                         </a>
                     </div>
                 </div>
