@@ -1,7 +1,7 @@
 
 export default function HeroSection() {
     return (
-        <section className="relative pt-24 pb-16 lg:pt-48 lg:pb-32 overflow-hidden">
+        <section className="relative pt-20 pb-16 lg:pt-44 lg:pb-32 overflow-hidden">
             {/* Background Decorations */}
             <div className="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden">
                 <div className="absolute top-[-5%] right-[-10%] w-[70vw] h-[70vw] max-w-[500px] max-h-[500px] bg-upcamp-cyan/10 rounded-full blur-[60px] lg:blur-[100px]" />
@@ -37,9 +37,14 @@ export default function HeroSection() {
 
                         <div className="flex items-center gap-4 pt-8 border-t border-outline/50">
                             <div className="flex -space-x-3">
-                                {[1, 2, 3, 4].map((i) => (
-                                    <div key={i} className="w-10 h-10 rounded-full border-2 border-surface bg-surface-variant flex items-center justify-center text-xs font-bold text-text-secondary">
-                                        Wait
+                                {[
+                                    "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=64&h=64&fit=crop&auto=format",
+                                    "https://images.unsplash.com/photo-1532339142463-fd0a8979791a?w=64&h=64&fit=crop&auto=format",
+                                    "https://images.unsplash.com/photo-1510312305653-8ed496efae75?w=64&h=64&fit=crop&auto=format",
+                                    "https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?w=64&h=64&fit=crop&auto=format"
+                                ].map((src, i) => (
+                                    <div key={i} className="w-10 h-10 rounded-full border-2 border-surface overflow-hidden">
+                                        <img src={src} alt={`Camping ${i + 1}`} className="w-full h-full object-cover" />
                                     </div>
                                 ))}
                             </div>
