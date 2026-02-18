@@ -76,7 +76,7 @@ export default function MainLayout() {
         <div className="min-h-screen bg-surface-variant">
             {/* Header */}
             <header className="bg-surface border-b border-outline shadow-sm relative z-20">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-16">
                         <div className="flex items-center gap-3">
                             <Link to="/">
@@ -164,7 +164,7 @@ export default function MainLayout() {
 
             {/* Navigation */}
             <nav className="bg-surface border-b border-outline">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex gap-6 overflow-x-auto">
                         {navigation.map((item) => {
                             const isActive = location.pathname === item.path;
@@ -190,7 +190,7 @@ export default function MainLayout() {
             </nav>
 
             {/* Main Content */}
-            <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <main className="w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
                 <Outlet />
             </main>
         </div>
