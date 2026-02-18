@@ -10,14 +10,13 @@ export default function Footer() {
                             alt="UPCAMP Hospitality"
                             className="h-8 w-auto object-contain"
                         />
-                        <span className="font-bold text-text-primary">UPCAMP Hospitality</span>
                     </div>
 
                     <div className="text-sm text-text-secondary">
                         © {new Date().getFullYear()} UPCAMP. Todos los derechos reservados.
                     </div>
 
-                    <div className="flex gap-6">
+                    <div className="flex gap-6 text-xs">
                         <a href="#" className="text-text-muted hover:text-upcamp-blue transition-colors">
                             Aviso Legal
                         </a>
@@ -26,6 +25,9 @@ export default function Footer() {
                         </a>
                         <a href="#" className="text-text-muted hover:text-upcamp-blue transition-colors">
                             Cookies
+                        </a>
+                        <a href="#" className="text-text-muted hover:text-upcamp-blue transition-colors">
+                            CGU
                         </a>
                     </div>
                 </div>
