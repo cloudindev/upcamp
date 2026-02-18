@@ -100,7 +100,12 @@ export default function GuestsPage() {
                                 guests?.map((guest: any) => (
                                     <tr key={guest.id} className="hover:bg-surface-variant transition-colors">
                                         <td className="p-4">
-                                            <div className="font-medium text-text-primary">{guest.firstName} {guest.lastName}</div>
+                                            <Link
+                                                to={`/guests/${guest.id}`}
+                                                className="font-medium text-text-primary hover:text-upcamp-blue transition-colors block"
+                                            >
+                                                {guest.firstName} {guest.lastName}
+                                            </Link>
                                             {guest.nationality && <div className="text-xs text-text-secondary">{guest.nationality}</div>}
                                         </td>
                                         <td className="p-4 text-text-secondary">
