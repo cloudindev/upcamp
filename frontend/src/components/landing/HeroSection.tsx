@@ -26,15 +26,15 @@ export default function HeroSection() {
                             El PMS más sencillo para optimizar tus reservas, gestionar la ocupación y atender a tus huéspedes. Pruébalo ahora, la aplicación más sencilla para gestores de campings.
                         </p>
 
-                        <div className="flex flex-col gap-2 pt-4">
+                        <div className="flex flex-col gap-3 pt-4 items-center sm:items-start w-full sm:w-fit">
                             <a
                                 href="/register"
                                 className="w-full sm:w-auto px-8 py-4 bg-upcamp-cyan text-white rounded-button font-bold text-lg shadow-lg shadow-upcamp-cyan/30 hover:shadow-xl hover:-translate-y-1 transition-all text-center"
                             >
                                 Pruébalo ahora
                             </a>
-                            <p className="text-xs text-text-muted ml-1">
-                                gratis durante 20 días
+                            <p className="text-xs text-text-muted text-center w-full">
+                                Gratis durante 20 días. Sin tarjeta de crédito.
                             </p>
                         </div>
 
